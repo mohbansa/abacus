@@ -1,0 +1,23 @@
+[
+	{
+	"Automation_BlacklistedSMS": {
+		"Commonsearch_FilePath": "/net/slc16cvh/scratch/adminui/datarepo/q4/commonsearch-q4.xml",
+		"ExecutionType": ["SRG","Sanity","Test","LRG"],
+		"Lab":"SLc->Q4",
+		"SendMail": "adminui_qa@oracle.com",
+		"RefreshView": ["false","true"]
+	},
+	"Production_CloudPortalTests":
+	{
+		"DC":["US002","EMEA","LAD","Sydney","AshBurn","Austin","Japan","LLG","Singapore","Slough"],
+		"Sanity_Type":["SIM","IDCS","Hybrid","Itra"],
+		"email":"mohini.bansal@oracle.com"
+	},
+	"Automation_ConfigMgmt": {
+		"Commonsearch_FilePath": "/net/slc16cvh/scratch/adminui/datarepo/q4/commonsearch-q4.xml",
+		"ExecutionType": ["SRG","Sanity","Test","LRG"],
+		"Lab":"SLc->Q4",
+		"SendMail": "adminui_qa@oracle.com",
+		"RefreshView": ["false","true"]
+	}
+}]

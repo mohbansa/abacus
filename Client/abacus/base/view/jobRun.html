@@ -1,0 +1,145 @@
+
+<html>
+<head>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #D9EDF7;
+  color: black;
+}
+</style>
+</head>
+<body>
+
+<table id="customers" data-ng-init="getJobData()" class="table table-condensed  table-bordered ">
+    <thead >
+    <tr>
+      <th>
+            <button type="button" ng-click="allExpanded = !allExpanded">
+                <span ng-bind="allExpanded ? '-' : '+'"></span>
+            </button>
+        </th>
+        <th >Component</th>
+       <th >Job Name</th>
+       <th >Parameter</th>
+      <th >Operation</th>
+  </tr>
+    </thead>
+    <tbody  ng-repeat="(key, value) in jobData">
+    <tr >
+        <td >
+            <button ng-click="expanded = !expanded " expand>
+                <span ng-bind="expanded ? '-' : '+'"></span>
+            </button>
+        </td>
+        <td  >{{value.Component}}</td>
+        <td  >{{value.JobName}}</td>
+        <td  ><button ng-click="open(value.JobName)">{{value.Parameters}}</button></td>
+        <td>
+        <a href={{value.ResultLink}} target="_blank"> <i class="fa fa-file-text" aria-hidden="true"></i></a>
+        </td>
+
+    </tr>
+    <tr ng-show="expanded " data-ng-init="getALlJobs(value.JobName)">
+        <td></td>
+        <td colspan="6">
+            <table id="customers" class="table table-condensed table-bordered"  >
+
+                <tbody>
+                <tr >
+
+                    <td  >Date</td>
+                    <td  > Job Name</td>
+
+                    <td  > Status</td>
+                      <td  > Parameters</td>
+                    <td ng-click="getALlJobs(value.JobName)">
+                       <i class="fa fa-refresh" ></i>
+                  </td>
+                 </tr>
+              <tr   ng-repeat="(key, jobQueue) in queueJobs | filter:value.JobName" >
+                <td>{{jobQueue.inQueueSince | date:'yyyy-MM-dd HH:mm:ss Z'}}
+
+                </td>
+                  <td>{{jobQueue.task.name}}
+
+                  </td>
+                    <!--d>{{jobQueue.params}}  {{jobQueue.why}}</td-->
+                      <td><i class="fa fa-circle-o-notch " style="font-size:24px;color:grey"></i></td>
+                      <td ng-click=cancelJob(jobQueue.task.name,jobQueue.id)>
+                        <div href="#" data-toggle="tooltip" data-placement="bottom" title="{{jobQueue.why}}">
+                           <i style="color:crimson" class="fa fa-window-close" ></i>
+                                       </i></div>
+
+
+                        </td>
+                </tr >
+                <tr   ng-repeat="(key, jobRun) in runningJobs | filter:value.JobName" >
+                  <td>{{jobRun.lastBuild.timestamp | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+                    <td>{{jobRun.name}}</td>
+                      <!--td>{{jobQueue.params}}</td-->
+                        <td><i style="font-size:24px;" ng-class="{
+                                     'fa fa-spinner fa-spin spin-fail':jobRun.color =='red_anime',
+                                     ' fa fa-spinner fa-spin spin-success':jobRun.color =='blue_anime',
+                                      'fa fa-spinner fa-spin spin-aborted':jobRun.color=='aborted_anime'
+                                     }" ></i></td>
+                                     <td ng-click=abortJob(jobRun.name,jobRun.lastBuild.number)>
+                                       <i style="color:crimson" class="fa fa-window-close" aria-hidden="true"></i>
+                                       </td>
+                  </tr >
+                  <tr   ng-repeat="(key, jobComplete) in completedJobs | filter:value.JobName" >
+
+                        <td>{{jobComplete.timestamp | date:'yyyy-MM-dd HH:mm:ss Z'}}</td>
+                        <td>{{jobComplete.fullDisplayName}}</td>
+                        <td><i style="font-size:24px;"  ng-class="{
+                                     'fa fa-check spin-fail':jobComplete.result =='FAILURE',
+                                     ' fa fa-check spin-success':jobComplete.result =='SUCCESS',
+                                      'fa fa-check spin-aborted':jobComplete.result=='ABORTED',
+				          'fa fa-check ':jobComplete.result=='UNSTABLE',	
+                                      'fa fa-spinner fa-spin'  :angular.equals({}, jobComplete.result)
+
+
+
+                       }" ></i></td>
+
+                        <td ng-repeat="(key,data) in dealer.result" ng-class="{
+                                     'danger':data.status =='FAIL',
+                                     'success':data.status =='PASS',
+                                      'info':data.status=='SKIP'
+                                     }">
+                                     <td>
+                                       <p ng-repeat="(key, params) in jobComplete.actions[0].parameters">
+                                       <b>{{params.name}}</b>={{params.value}}
+                                     </p>
+                                     </td>
+
+                          <td><a href={{jobComplete.url}}{{value.ReportTag}} target="_blank"><i class="fa fa-file-text" aria-hidden="true"></i></a></td>
+                    </tr >
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
+
+

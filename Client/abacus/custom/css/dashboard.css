@@ -1,0 +1,168 @@
+.container {
+  margin-left:auto;
+  margin-right:auto;
+  width:99vw;
+  height:99vh;
+  overflow-x: auto;
+
+
+}
+
+.preload { width:100px;
+    height: 100px;
+    position: fixed;
+    top: 50%;
+    left: 50%;}
+
+.nvd3.nv-scatter .nv-groups .nv-point,
+.nvd3 .nv-groups .nv-point {
+  stroke-width: 4px;
+  fill-opacity: .95 !important;
+  stroke-opacity: .95 !important;
+}
+.sort-true
+{
+  background-color: green;
+
+}
+.sort-false
+{
+ background-color: red;
+
+}
+
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    width:9.7%; /* 0 width - change this with JavaScript */
+
+    z-index: 1; /* Stay on top */
+    top:170;
+    left: 0;
+    background-color:#010201 ; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+.frame {
+
+}
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+color: #A9CCE3;
+    display: block;
+    transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+.sizeIcon
+{
+  padding: 10px;
+
+}
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color:#FCF8E3;
+}
+.table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th ,th{
+   background-color:#D9EDF7 ;
+}
+.chart-gauge
+    {
+      width: 40vh;
+    padding-left:3vh;
+      padding-top:5vh;
+      padding-right:5vh;
+     }
+    .chart-first
+    {
+      fill: #9FBD35;
+    }
+    .chart-second
+    {
+      fill: #FB3033;
+    }
+          .chart-third
+          {
+              fill: #FB3033;
+          }
+
+    .needle, .needle-center
+    {
+      fill: #000000;
+    }
+          .text {
+              color: "#112864";
+              font-size: 16px;
+          }
+
+
+    svg {
+      font: 10px sans-serif;
+
+    }
+    .overflow-text{
+
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+
+    	}
+      .expandcollapse-item {
+  overflow: hidden;
+  border-top:1px solid blue;
+}
+
+.expandcollapse-heading-collapsed {
+  cursor: pointer;
+  padding: 15px 20px;
+  position: relative;
+  z-index: 100000000;
+  color: black;
+  background-color: white;
+
+}
+.expandcollapse-heading-expanded {
+  cursor: pointer;
+  z-index: 100000000;
+  padding: 15px 20px;
+  position: relative;
+  color: white;
+  background-color: black;
+  border: 1px solid blue;
+}
+.spin-fail{
+  color:red;
+
+}
+.spin-success{
+  color:blue;
+}
+.spin-aborted{
+  color:grey;
+}

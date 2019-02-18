@@ -1,0 +1,54 @@
+aaaaaaaaaaaaaaaaaaaaa
+<table  class="table table-condensed  table-bordered ">
+    <thead >
+    <tr>
+      <th>
+            <button type="button" ng-click="ctrl.expandAll(allExpanded = !allExpanded)">
+                <span ng-bind="allExpanded ? '-' : '+'"></span>
+            </button>
+        </th>
+        <th >Test</th>
+       <th ng-repeat="header in ctrl.headers |  orderBy:'header'">{{header.build}}</th>
+  </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat-start="dealer in ctrl.dealers">
+        <td>
+            <button ng-click="expanded = !expanded" expand>
+                <span ng-bind="expanded ? '-' : '+'"></span>
+            </button>
+        </td>
+        <td  ng-bind="dealer['moduleName']"></td>
+       <td ng-repeat="(key,data) in dealer.result" ng-class="{
+                    'danger':data.status =='FAIL',
+                    'success':data.status =='PASS',
+                     'info':data.status=='SKIP'
+                    }">{{data.status}}
+
+
+
+    </tr>
+    <tr ng-repeat-end ng-show="expanded">
+        <td></td>
+        <td colspan="6">
+            <table class="table table-condensed table-bordered">
+
+                <tbody>
+                <tr ng-repeat="method in dealer.testMethod">
+
+                    <td   ng-class="{
+                    'danger':data =='FAIL',
+                    'success':data =='PASS',
+                     'info':data=='SKIP'
+
+                    }" ng-repeat="(key,data) in method">
+                      {{data}}
+                         </td>
+
+                 </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>

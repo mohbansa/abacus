@@ -1,0 +1,19 @@
+<div style="overflow-y:scroll;"  data-ng-init="ATM()">
+
+
+     <table class="table table-striped table-bordered">
+       <thead>
+       <tr>
+           <th ng-repeat="(colName, colValue) in tableManualData[0] " ng-click="changeSorting(colName)" >
+             <span ng-bind="colName"   ></span>
+          <i class="fa" ng-class="getIcon(colName)" aria-hidden="true"></i>
+           </th>
+
+       </tr>
+   </thead>
+       <tr ng-repeat="dataObj in tableManualData | orderBy:columnSort:sort.descending " >
+           <td style="text-align:center" ng-repeat="(colName, colValue) in dataObj " ng-bind="colValue" ></td>
+
+       </tr>
+     </table>
+</div>

@@ -1,0 +1,61 @@
+[{
+			"Id": 1,
+			"JobName": "AdminUI_Automation_LabelSanity",
+			"ProjectId": 1
+		}, {
+			"Id": 2,
+			"JobName": "AdminUI_Automation_SRG",
+			"ProjectId": 1
+		}, {
+			"Id": 3,
+			"JobName": "DevApiStage2",
+			"ProjectId": 2
+		}, {
+			"Id": 4,
+			"JobName": "Production-Compute",
+			"ProjectId": 3
+		},
+		{
+			"Id": 5,
+			"JobName": "Production_Websites",
+			"ProjectId": 3
+		},
+		{
+			"Id": 6,
+			"JobName": "Production_CloudPortalTests-ScheduledRun",
+			"ProjectId": 3,
+			"EnabledFilter": true,
+			"FilterTemplateName": "base/view/FilterTemplate/CloudPortalProductionScheduledRun.html"
+		},
+		{
+			"Id": 7,
+			"JobName": "LabelSanity-IBE",
+			"ProjectId": 4
+		},
+		{
+			"Id": 8,
+			"JobName": "Production_Cost_Estimator",
+			"ProjectId": 3
+		},
+		{
+			"Id": 9,
+			"JobName": "Production-Healthcheck",
+			"ProjectId": 3
+		},
+		{
+			"Id": 10,
+			"JobName": "LabelSanity- SIM",
+			"ProjectId": 5
+		},
+		{
+			"Id": 11,
+			"JobName": "LabelSanity-IDCS",
+			"ProjectId": 5
+		},
+{
+                        "Id": 12,
+                        "JobName": "Production_COCHealth",
+                        "ProjectId": 3
+                }
+	
+]

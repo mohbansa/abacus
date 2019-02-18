@@ -1,0 +1,53 @@
+<!--Need to review..not using this file have to check-->
+
+<div ng-controller="AdminUIUXController as ctrl" data-ng-init="loadData()">
+
+    <div style="float:left" id="mySidenav" class="sidenav" >
+
+     <a   tooltip-placement="right" uib-tooltip="Grid View"  ng-click="operation='dashboard';loadData"><i class="fa fa-th-large fa-2x" aria-hidden="true"></i></a>
+      <a   tooltip-placement="right" uib-tooltip="Last 10 run results"  ng-click="operation='pie';pieChart()"><i class="fa fa-pie-chart  fa-2x" aria-hidden="true"></i></a>
+      <a   tooltip-placement="right" uib-tooltip="Last 10 run statistics"  ng-click="operation='bar';lineBarChart()"><i class="fa fa-bar-chart fa-2x"></i></a>
+      <a  tooltip-placement="right" uib-tooltip="Test status metrics for last 10 run"  ng-click="operation='table';tableChart()"><i class="fa fa-table fa-2x"></i></a>
+      <a   tooltip-placement="right" uib-tooltip="Automation Traceibility Matrix"  ng-click="operation='ATM';ATM()"><i class="fa fa-tasks fa-2x" aria-hidden="true"></i></a>
+
+  </div>
+
+<div style="height:35px;"></div>
+
+  <div style="float:right;width:89%" ng-switch="operation" >
+
+  <div  ng-switch-when="dashboard">
+    <div>
+        <div style="border-style:outset;width:40%;float:left; height:200px;overflow-x:scroll">  <nvd3 options="pieoptions" data="dataPieChart"></nvd3></div>
+        <div style="width:60%; float:right;height:200px;overflow-x:Scroll">  <nvd3 options="options" data="dataBarChart"></nvd3></div>
+    </div>
+    <br>
+       <div style="margin-top:200px;overflow-y:scroll;height:250px" ng-include src="'base/view/tableTemplate.html'"></div>
+
+
+
+  </div>
+   <div  ng-switch-when="bar"> <nvd3 options="options" data="dataBarChart"></nvd3></div>
+   <div  ng-switch-when="pie"><nvd3 options="pieoptions" data="dataPieChart"></nvd3></div>
+   <div data-ng-init="loadTableData()" ng-switch-when="table">
+          <div style="overflow-y:scroll;height:450px" class="well well-lg">
+                <div  ng-include src="'base/view/trend.html'"></div>
+          </div>
+        </div>
+   <div style="overflow-y:scroll;height:450px" ng-switch-when="ATM">
+
+
+        <table class="table table-striped">
+          <thead>
+          <tr>
+              <th ng-repeat="(colName, colValue) in tableManualData[0] " ng-bind="colName"  ></th>
+          </tr>
+      </thead>
+          <tr ng-repeat="dataObj in tableManualData  " >
+              <td ng-repeat="(colName, colValue) in dataObj " ng-bind="colValue" ></td>
+          </tr>
+        </table>
+ </div>
+
+</div>
+</div>

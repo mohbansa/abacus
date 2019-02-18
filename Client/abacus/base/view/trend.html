@@ -1,0 +1,92 @@
+<div data-ng-init="tableData()" ng-controller="tableController">
+<!--div class="preload" ><img src="http://i.imgur.com/KUJoe.gif">
+</div-->
+
+
+<div class="content" >
+
+<table  class="table table-condensed  table-bordered ">
+    <thead >
+
+      <th style="width:1%">
+            <button type="button" ng-click="testData.testFileData.expandAll(allExpanded = !allExpanded)">
+                <span ng-bind="allExpanded ? '-' : '+'"></span>
+            </button>
+        </th>
+        <th style="width:15%" >Test</th>
+       <th style="width:10%" ng-repeat="x in testData.header">{{x.mappingNumber}}</th>
+
+    </thead>
+    <tbody>
+    <tr ng-repeat-start="module in testData.testFileData">
+        <td >
+            <button ng-click="expanded = !expanded" expand>
+                <span ng-bind="expanded ? '-' : '+'"></span>
+            </button>
+        </td>
+        <td style="width:15%"  >{{module.moduleName}}</td>
+      <td  style="width:10%" ng-repeat="(key,data) in module.result" ng-class="{
+                    'danger':data.status =='FAIL',
+                    'success':data.status =='PASS',
+                     'warning':data.status=='SKIP'
+                   }">{{data.status}}
+                  </td>
+    </tr>
+    <tr style="padding-top:10px;" ng-repeat-end ng-show="expanded">
+      <td></td>
+        <td colspan="12">
+            <table  style="border:3px solid #ff6666" class="table table-condensed table-bordered">
+              <thead >
+                <tr >
+<th style="background-color:	#ff6666;width:1%" >Test</th>
+<th style="background-color:	#ff6666;width:10%" ng-repeat="x in testData.header">{{x.mappingNumber}}</th>
+          </tr>
+                        </thead>
+              <tbody>
+                <tr   ng-repeat="method in module.testMethod">
+                  <td class="overflow-text">
+                          {{method.testName}}</br> <i style="font-size:15px;"> {{method.result[0].parameters}}</i>
+
+                    </td>
+
+                    <td style="width:10%"   ng-class="{
+                    'danger':data.status =='FAIL',
+                    'success':data.status =='PASS',
+                     'info':data.status=='SKIP'
+
+                   }" ng-repeat="(key,data) in method.result">
+                   <!--span  data-toggle="tooltip" data-placement="right" title={{data.parameters}}{{data.exception}}>
+
+                   </span-->
+                   <span  uib-popover-template="dynamicPopover.templateUrl"
+                   data-placement="right " data-toggle="popover" data-trigger="hover" popover-title="{{dynamicPopover.title}}"
+                   class="btn btn-default">
+                    <a ng-href={{urlDetails}}{{data.buildNumber}} ng-show="data.status=='FAIL'" target="_blank">{{data.status}}</a>
+                    <span ng-hide="data.status=='FAIL'">{{data.status}}</span>
+                    </span>
+
+   <script type="text/ng-template" id="myPopoverTemplate.html">
+
+       <div class="form-group">
+         <div>
+           <div ng-show="data.parameters.length<=0 && data.exception.length<=0">
+             No data to Display.
+           </div>
+         <div   ng-show="data.parameters.length>0"><label>Parameters:</label>{{data.parameters}}</div>
+       <div  ng-show="data.exception.length>0"><label>Exception:</label>{{(data.exception| limitTo: 100) + (data.exception.length> 100 ? '...' : '')}}
+        <!--a ng-click="changeLength(data.exception)" class="color3"><strong>More</strong></a-->
+     </div>
+       </div>
+   </script>
+
+                         </td>
+
+                 </tr>
+               </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</div>

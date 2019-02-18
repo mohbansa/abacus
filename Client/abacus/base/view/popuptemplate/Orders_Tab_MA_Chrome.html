@@ -1,0 +1,15 @@
+<div class="modal-header">
+<h3 class="modal-title">Parameters</h3>
+</div>
+<div class="modal-body">
+
+  <label>Browser:</label>
+  <select ng-model="selectBrowser"  ng-options="x for x in jobParameter.Browser">
+  </select>
+  </br></br>
+  <div class="modal-footer">
+  <button class="btn btn-warning" type="button"
+  ng-click="close()">Cancel</button>
+  <button class="btn btn-warning" type="button"
+  ng-click="runJob()">Submit</button>
+</div>

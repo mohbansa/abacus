@@ -1,0 +1,32 @@
+[
+       {
+            "Component" : "AdminUI",
+            "JobName" : "Automation_BlacklistedSMS",
+            "Parameters":"---",
+            "ResultLink":"http://slc16cvh.us.oracle.com:7001/job/Automation_BlacklistedSMS/ExtentNg_20Execution_20Report/",
+            "Host":"http://slc16cvh.us.oracle.com:7001",
+            "Credentials":"adminuiqa:welcome1",
+            "ReportTag":"ExtentNg_20Execution_20Report"
+
+
+        },
+        {
+             "Component" : "AdminUI",
+             "JobName" : "Automation_ConfigMgmt",
+             "Parameters":"---",
+             "ResultLink":"http://slc16cvh.us.oracle.com:7001/job/Automation_ConfigMgmt/ExtentNg_20Execution_20Report/",
+             "Host":"http://slc16cvh.us.oracle.com:7001",
+             "Credentials":"adminuiqa:welcome1",
+            "ReportTag":"ExtentNg_20Execution_20Report"
+
+         },{
+            "Component" : "Production",
+            "JobName" : "Production_CloudPortalTests",
+            "Parameters":"---",
+            "ResultLink":"http://den02qdx.us.oracle.com:8080/job/Production_CloudPortalTests-ScheduledRun/HTML_20Report/",
+            "Host":"http://den02qdx.us.oracle.com:8080",
+            "Credentials":"admin:Admin",
+            "ReportTag":"HTML_20Report"
+
+        }
+      ]

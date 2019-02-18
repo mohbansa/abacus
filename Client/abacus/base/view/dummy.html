@@ -1,0 +1,138 @@
+<div ng-controller="AdminUIUXController as ctrl">
+    <div >
+           <span class="plus-toggle collapsed " ng-click="pieChart()" data-toggle="collapse" data-target="#collapsePieChart"  uib-tooltip="Overall test result in last 10 build"
+                 tooltip-placement="top-left" >
+         <button type="button" class="list-group-item" ng-click="isCollapsedPieChart = !isCollapsedPieChart" >Pie Chart
+            <span class=" plus-icon icon-plus-down glyphicon glyphicon-minus"></span><span class=" plus-icon icon-plus-up glyphicon glyphicon-plus"></span>
+         </button>
+               </span>
+
+        <div id="collapsePieChart" uib-collapse="!isCollapsedPieChart" data-toggle="collapse">
+            <hr>
+            <div >
+                <nvd3 options="pieoptions" data="dataPieChart"></nvd3>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div>
+           <span class="plus-toggle collapsed " ng-click="lineBarChart()" data-toggle="collapse" data-target="#collapseBarChart" uib-tooltip="Test result trend in last 10 build"
+                 tooltip-placement="top-left">
+         <button type="button" class="list-group-item" ng-click="isCollapsedBarChart = !isCollapsedBarChart">Bar Chart
+            <span class=" plus-icon icon-plus-down glyphicon glyphicon-minus"></span><span class=" plus-icon icon-plus-up glyphicon glyphicon-plus"></span>
+         </button>
+               </span>
+
+        <div id="collapseBarChart" uib-collapse="!isCollapsedBarChart" data-toggle="collapse">
+            <hr>
+            <div >
+                <nvd3 options="options" data="dataBarChart"></nvd3>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div>
+           <span class="plus-toggle collapsed " ng-click="tableChart()" data-toggle="collapse" data-target="#collapseTable" uib-tooltip="Every feature result in last 10 build"
+                 tooltip-placement="top-left">
+         <button type="button" class="list-group-item" ng-click="isCollapsedTable = !isCollapsedTable">Table
+            <span class=" plus-icon icon-plus-down glyphicon glyphicon-minus"></span><span class=" plus-icon icon-plus-up glyphicon glyphicon-plus"></span>
+         </button>
+               </span>
+        <hr>
+        <div id="collapseTable" uib-collapse="!isCollapsedTable" data-toggle="collapse">
+            <div class="well well-lg">
+                <div >
+                    <table class="table table-condensed  table-bordered ">
+                        <thead >
+                        <tr>
+                            <th>
+                                <button type="button" ng-click="ctrl.expandAll(allExpanded = !allExpanded)">
+                                    <span ng-bind="allExpanded ? '-' : '+'"></span>
+                                </button>
+                            </th>
+                            <th >Test</th>
+                           <th ng-repeat="header in ctrl.headers |  orderBy:'header'">{{header.build}}</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat-start="dealer in ctrl.dealers">
+                            <td>
+                                <button ng-click="expanded = !expanded" expand>
+                                    <span ng-bind="expanded ? '-' : '+'"></span>
+                                </button>
+                            </td>
+                            <td  ng-bind="dealer['moduleName']"></td>
+                           <td ng-repeat="(key,data) in dealer.result" ng-class="{
+                                        'danger':data.status =='FAIL',
+                                        'success':data.status =='PASS',
+                                         'info':data.status=='SKIP'
+                                        }">{{data.status}}
+
+
+
+                        </tr>
+                        <tr ng-repeat-end ng-show="expanded">
+                            <td></td>
+                            <td colspan="6">
+                                <table class="table table-condensed table-bordered">
+
+                                    <tbody>
+                                    <tr ng-repeat="method in dealer.testMethod">
+
+                                        <td ng-class="{
+                                        'danger':data =='FAIL',
+                                        'success':data =='PASS',
+                                         'info':data=='SKIP'
+                                        }" ng-repeat="(key,data) in method">
+                                            {{data}}
+                                             </td>
+
+                                     </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div></div>
+        </div>
+    </div>
+    <div >
+           <span class="plus-toggle collapsed "  data-toggle="collapse" data-target="#ATM"  uib-tooltip="Overall test result in last 10 build"
+                 tooltip-placement="top-bottom" >
+         <button type="button" class="list-group-item" ng-click="ATM= !ATM" >ATM
+            <span class=" plus-icon icon-plus-down glyphicon glyphicon-minus"></span><span class=" plus-icon icon-plus-up glyphicon glyphicon-plus"></span>
+         </button>
+               </span>
+
+               <div id="ATM" uib-collapse="!ATM" data-toggle="collapse">
+                   <hr>
+
+               </div>
+
+            <hr>
+
+        </div>
+
+    </div>
+
+
+      <js-xls onread="read" onerror="error"></js-xls>
+
+<table class="table table-striped">
+  <thead>
+        <tr>
+            <th ng-repeat="(colName, colValue) in tableManualData[0]" ng-bind="colName"></th>
+        </tr>
+    </thead>
+  <tr ng-repeat="dataObj in tableManualData">
+
+            <td ng-repeat="(colName, colValue) in dataObj" ng-bind="colValue"></td>
+        </tr>
+</table>
+
+       <nvd3 options="optionsBar" data="dataBar"></nvd3>
+         <nvd3 options="optionsA" data="dataATM"></nvd3>
+    <hr>
+</div>

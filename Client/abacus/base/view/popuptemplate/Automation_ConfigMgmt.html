@@ -1,0 +1,81 @@
+
+
+
+<style>
+
+.popup
+{
+ border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-style: solid;
+  border-width: 3px;
+}
+
+input[type=text], select {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.buttonClass {
+  width: 10%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px ;
+  padding-right:60px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+.buttonClass:hover {
+  background-color: #45a049;
+}
+
+div {
+
+}
+
+label {
+  width:35%;
+  display: inline-block;
+}
+</style>
+<body>
+
+<div class="popup">
+<div  class="modal-header">
+<h3 class="modal-title">Parameters</h3>
+</div>
+<div class="modal-body">
+
+<label >Commonsearch_FilePath:</label>
+<input type="text" ng-model="selectFilePath" ng-init="selectFilePath='/net/slc16cvh/scratch/adminui/datarepo/q4/commonsearch-q4.xml'"/></label>
+</br>
+<label>ExecutionType:</label>
+<select ng-model="selectExecType" ng-options="x for x in jobParameter.ExecutionType">
+</select>
+</br>
+<label class="labelSet">Lab:</label>
+<input type="text" ng-model="selectLab"  value={{jobParameter.Lab}}></label>
+</br>
+<label>SendMail:</label>
+<input type="text" ng-model="sendMail" ng-init="sendMail='adminui_qa@oracle.com'"/></label>
+</br>
+<label>RefreshView:</label>
+<select ng-model="selectViewRefresh"  ng-options="x for x in jobParameter.RefreshView">
+</select>
+</br>
+<div class="modal-footer">
+<button class="btn btn-warning buttonClass" type="button" ng-click="close()">Cancel</button>
+<button class="btn btn-warning buttonClass" type="button" ng-click="runJob()">Submit</button>
+</div>
+</div>
+

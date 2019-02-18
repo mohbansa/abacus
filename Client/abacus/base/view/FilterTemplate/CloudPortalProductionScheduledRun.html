@@ -1,0 +1,33 @@
+
+<div class="expandcollapse-item">
+       <div ng-click="active = !active" ng-class="{'expandcollapse-heading-collapsed': active, 'expandcollapse-heading-expanded': !active}">
+         <p>+</p>
+       </div>
+       <div class="slideDown" ng-hide="active">
+         <div class="expand-collapse-content">
+         <br>
+          <div>
+            <label class="col-sm-2">Data Center</label>
+            <select  ng-model="dataCenter" class="col-sm-2">
+             <option>EMEA</option>
+             <option>US002</option>
+              <option>LAD</option>
+             <option>SYDNEY</option>
+            </select>
+          </div>
+
+        <div>
+          <label class="col-sm-2">Sanity Type</label>
+          <select ng-model="sanityType" class="col-sm-2">
+         <option>SIM</option>
+         <option>IDCS</option>
+          <option>Itra</option>
+          </select>
+        </div>
+        
+        <div>
+          <button  ng-click=getJobsParameters(project,job,dataCenter,sanityType)>Search</button>
+        </div>
+         </div>
+       </div>
+  </div>

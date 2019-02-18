@@ -1,0 +1,14 @@
+{
+  "OPCIAUI": {
+    "host": "slc16cvh.us.oracle.com",
+    "port": "7001",
+    "username":"adminuiqa",
+    "password":"welcome1"
+  },
+  "Production": {
+    "host": "den02qdx.us.oracle.com",
+    "port": "8080",
+    "username":"admin",
+    "password":"Admin"
+  }
+}
